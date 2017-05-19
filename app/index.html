@@ -30,19 +30,46 @@
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]-->
 
+      <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      	<defs>
+	      	<symbol id="alarm-clock" viewBox="0 0 16 16">
+	      		<title>Alarm Clock</title>
+	      	    <path fill-rule="evenodd" d="M15.509,5.261 C14.701,3.049 12.951,1.299 10.739,0.491 C11.258,0.187 11.855,0.000 12.500,0.000 C14.433,0.000 16.000,1.567 16.000,3.500 C16.000,4.145 15.813,4.742 15.509,5.261 ZM15.000,8.000 C15.000,9.905 14.234,11.627 13.000,12.889 L13.000,13.000 L13.000,15.000 C13.000,15.552 12.552,16.000 12.000,16.000 C11.448,16.000 11.000,15.552 11.000,15.000 L11.000,14.301 C10.088,14.736 9.078,15.000 8.000,15.000 C6.922,15.000 5.912,14.736 5.000,14.301 L5.000,15.000 C5.000,15.552 4.552,16.000 4.000,16.000 C3.448,16.000 3.000,15.552 3.000,15.000 L3.000,13.000 L3.000,12.889 C1.766,11.627 1.000,9.905 1.000,8.000 C1.000,4.134 4.134,1.000 8.000,1.000 C11.866,1.000 15.000,4.134 15.000,8.000 ZM8.000,3.000 C5.239,3.000 3.000,5.239 3.000,8.000 C3.000,10.761 5.239,13.000 8.000,13.000 C10.761,13.000 13.000,10.761 13.000,8.000 C13.000,5.239 10.761,3.000 8.000,3.000 ZM10.000,9.000 L8.000,9.000 C7.448,9.000 7.000,8.552 7.000,8.000 L7.000,6.000 C7.000,5.448 7.448,5.000 8.000,5.000 C8.552,5.000 9.000,5.448 9.000,6.000 L9.000,7.000 L10.000,7.000 C10.552,7.000 11.000,7.448 11.000,8.000 C11.000,8.552 10.552,9.000 10.000,9.000 ZM0.491,5.261 C0.187,4.742 0.000,4.145 0.000,3.500 C0.000,1.567 1.567,0.000 3.500,0.000 C4.145,0.000 4.742,0.187 5.261,0.491 C3.050,1.299 1.299,3.049 0.491,5.261 Z" />
+	      	</symbol>
+      	</defs>
+      </svg>
+
       <main class="page-wrapper">
-      	<div class="clock" id="js-clock">
+      	<div class="clock" id="clock">
       		<div class="clock__display">
       			<div class="clock__days">
-      				<span class="clock__day" data-day="1">Mon</span>
-      				<span class="clock__day" data-day="2">Tue</span>
-      				<span class="clock__day" data-day="3">Wed</span>
-      				<span class="clock__day" data-day="4">Thu</span>
-      				<span class="clock__day" data-day="5">Fri</span>
-      				<span class="clock__day" data-day="6">Sat</span>
-      				<span class="clock__day" data-day="7">Sun</span>
+      				<span class="clock__day active" id="mon">Mon</span>
+      				<span class="clock__day" id="tue">Tue</span>
+      				<span class="clock__day" id="wed">Wed</span>
+      				<span class="clock__day" id="thu">Thu</span>
+      				<span class="clock__day" id="fri">Fri</span>
+      				<span class="clock__day" id="sat">Sat</span>
+      				<span class="clock__day" id="sun">Sun</span>
       			</div>
-      			<time>12:36:59</time>
+
+      			<div class="clock__time">
+      				<button class="time__alarm time__el">
+      					<svg class="alarm__icon"><use xlink:href="#alarm-clock"></use></svg>
+      				</button>
+
+      				<time class="time__digits time__el">
+      					<span class="digits__num" id="hours">12</span>
+      					<span class="digits__col">:</span>
+      					<span class="digits__num" id="minutes">36</span>
+      					<span class="digits__col">:</span>
+      					<span class="digits__num" id="seconds">59</span>
+      				</time>
+
+      				<div class="time__periods time__el">
+      					<span class="time__period" id="am">am</span>
+      					<span class="time__period" id="pm">pm</span>
+      				</div>
+      			</div>
       		</div>
       	</div>
 

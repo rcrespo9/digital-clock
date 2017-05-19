@@ -30,12 +30,35 @@ body {
 }
 
 /*------------------------------------*\
+  #VARIABLES
+\*------------------------------------*/
+
+$medium-gray: #272e38;
+$light-gray: #cacaca;
+
+/*------------------------------------*\
   #FUNCTIONS
 \*------------------------------------*/
 
 @function rem($size) {
   $remSize: $size / 16px;
   @return #{$remSize}rem;
+}
+
+/*------------------------------------*\
+  #MIXINS
+\*------------------------------------*/
+
+@mixin clock-text() {
+	color: $medium-gray;
+	font-size: rem(10px);
+	font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	text-transform: uppercase;
+
+	&.active {
+		color: $light-gray;
+		font-weight: 500;
+	}
 }
 
 /*------------------------------------*\
@@ -57,7 +80,7 @@ body {
 	max-width: rem(406px);
 	width: 100%;
 	padding: rem(50px);
-	background-color: #272e38;
+	background-color: $medium-gray;
 }
 
 	.clock__display {
@@ -76,24 +99,56 @@ body {
 }
 
 	.clock__day {
-		color: #272e38;
-		font-size: rem(10px);
-		font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-		text-transform: uppercase;
+		@include clock-text;
 	}
-
 
 /*------------------------------------*\
   #TIME
 \*------------------------------------*/
 
-time {
-	color: #cacaca;
+.time__el {
+	display: inline-block;
+}
+
+.time__alarm {
+	padding: 0;
+	background-color: transparent;
+	border: none;
+	color: $medium-gray;
+	appearance: none;
+	cursor: pointer;
+	transition: all .1s ease-in-out;
+
+	&.time__alarm--active,
+	&:hover {
+		color: $light-gray;
+	}
+}
+
+	.alarm__icon {
+		display: inline-block;
+		width: rem(16px);
+		height: rem(16px);
+		stroke-width: 0;
+		stroke: currentColor;
+		fill: currentColor;
+	}
+
+.time__digits {
+	color: $light-gray;
 	font-family: 'digital-7';
 	font-size: rem(75px);
 	font-weight: normal;
 	letter-spacing: rem(2px);
 }
+
+.time__periods {
+}
+
+	.time__period {
+		display: block;
+		@include clock-text;
+	}
 
 
 /*------------------------------------*\
