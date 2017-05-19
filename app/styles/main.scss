@@ -67,13 +67,44 @@ body {
 	}
 
 /*------------------------------------*\
+  #CLOCK DAYS
+\*------------------------------------*/
+
+.clock__days {
+	@extend .clearfix;
+}
+
+	.clock__day {
+		color: #272e38;
+		font-size: rem(10px);
+		font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		text-transform: uppercase;
+	}
+
+
+/*------------------------------------*\
   #TIME
 \*------------------------------------*/
 
-	time {
-		color: #cacaca;
-		font-family: 'digital-7';
-		font-size: rem(75px);
-		font-weight: normal;
-		letter-spacing: rem(2px);
-	}
+time {
+	color: #cacaca;
+	font-family: 'digital-7';
+	font-size: rem(75px);
+	font-weight: normal;
+	letter-spacing: rem(2px);
+}
+
+
+/*------------------------------------*\
+  #HELPERS
+\*------------------------------------*/
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
