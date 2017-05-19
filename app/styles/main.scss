@@ -60,7 +60,7 @@ body {
 	background-color: #272e38;
 }
 
-	.clock__inner {
+	.clock__display {
 		padding: rem(10px) rem(15px);
 		border-radius: 4px;
 		background-color: #0f1620;
@@ -71,7 +71,8 @@ body {
 \*------------------------------------*/
 
 .clock__days {
-	@extend .clearfix;
+	display: flex;
+	justify-content: space-between;
 }
 
 	.clock__day {
