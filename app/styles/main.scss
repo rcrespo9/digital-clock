@@ -79,12 +79,12 @@ $light-gray: #cacaca;
 .clock {
 	max-width: rem(406px);
 	width: 100%;
-	padding: rem(50px);
+	padding: rem(46px);
 	background-color: $medium-gray;
 }
 
 	.clock__display {
-		padding: rem(10px) rem(15px);
+		padding: rem(10px) rem(15px) rem(2px);
 		border-radius: 4px;
 		background-color: #0f1620;
 	}
@@ -135,6 +135,7 @@ $light-gray: #cacaca;
 	}
 
 .time__digits {
+	margin-left: rem(7px);
 	color: $light-gray;
 	font-family: 'digital-7';
 	font-size: rem(75px);
@@ -142,7 +143,34 @@ $light-gray: #cacaca;
 	letter-spacing: rem(2px);
 }
 
+	.digits__col,
+	.digits__num {
+		display: inline-block;
+	}
+
+	.digits__col {
+		position: relative;
+		padding: 0 rem(1px);
+
+		&:before,
+		&:after {
+			content: ".";
+			display: block;
+			position: relative;
+			line-height: 0;
+		}
+
+		&:before {
+			top: rem(-34px);
+		}
+
+		&:after {
+			bottom: 0;
+		}
+	}
+
 .time__periods {
+	margin-left: rem(1px);
 }
 
 	.time__period {
