@@ -135,10 +135,11 @@ $light-gray: #cacaca;
 	}
 
 .time__digits {
-	margin-left: rem(10px);
+	min-width: rem(220px);
+	margin-left: rem(7px);
 	color: $light-gray;
 	font-family: 'digital-7';
-	font-size: rem(65px);
+	font-size: rem(70px);
 	font-weight: normal;
 	letter-spacing: rem(2px);
 }
