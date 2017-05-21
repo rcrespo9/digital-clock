@@ -84,32 +84,34 @@ $light-gray: #cacaca;
 }
 
 	.clock__display {
-		padding: rem(7px) rem(15px) rem(2px);
+		padding: rem(7px) rem(15px);
 		border-radius: 4px;
 		background-color: #0f1620;
+	}
+
+	.clock__row {
+		display: flex;
+		justify-content: space-between;
 	}
 
 /*------------------------------------*\
   #CLOCK DAYS
 \*------------------------------------*/
 
-.clock__days {
-	display: flex;
-	justify-content: space-between;
+.clock__day {
+	@include clock-text;
 }
-
-	.clock__day {
-		@include clock-text;
-	}
 
 /*------------------------------------*\
   #TIME
 \*------------------------------------*/
 
+// SHARED STYLES
 .time__el {
-	display: inline-block;
+	align-self: flex-end;
 }
 
+// ALARM BUTTON
 .time__alarm {
 	padding: 0;
 	background-color: transparent;
@@ -134,9 +136,9 @@ $light-gray: #cacaca;
 		fill: currentColor;
 	}
 
+// DIGITS
 .time__digits {
-	min-width: rem(220px);
-	margin-left: rem(7px);
+	margin-bottom: rem(-5px);
 	color: $light-gray;
 	font-family: 'digital-7';
 	font-size: rem(70px);
@@ -151,7 +153,7 @@ $light-gray: #cacaca;
 
 	.digits__col {
 		position: relative;
-		padding: 0 rem(1px);
+		padding: 0 rem(3px);
 
 		&:before,
 		&:after {
@@ -170,14 +172,11 @@ $light-gray: #cacaca;
 		}
 	}
 
-.time__periods {
-	margin-left: rem(2px);
+// TIME PERIODS
+.time__period {
+	display: block;
+	@include clock-text;
 }
-
-	.time__period {
-		display: block;
-		@include clock-text;
-	}
 
 
 /*------------------------------------*\
