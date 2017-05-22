@@ -29,7 +29,6 @@
 		return {
 			init: () => {
 				setInterval(setTime, 1000);
-				console.log()
 			}
 		}
 	};
