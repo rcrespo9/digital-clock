@@ -1,8 +1,8 @@
 'use strict';
 
 (function() {
-	const clock = (clockEl) => {
-		const $clock = document.getElementById(clockEl);
+	const clock = () => {
+		const $clock = document.getElementById('js-clock');
 		const activeClass = 'active';
 
 		const setTimePeriod = () => { $clock.querySelector( `#${moment().format('a')}`).classList.add(activeClass) };
@@ -24,17 +24,51 @@
 
 			setTimePeriod();
 			setDay();
+
+			if(moment().format('hh:mm a') === alarmTime && alarmTime.length) {
+				console.log('Alarm ringing!');
+			}
+		}
+
+		const openAlarmClass = 'clock__alarm--active';
+		const activeAlarmBtnClass = 'time__alarm-btn--active';
+
+		const $alarmSetup = $clock.querySelector('#clock-alarm');
+		const $alarmBtn = $clock.querySelector('#alarm-btn');
+		const $saveAlarmBtn = $clock.querySelector('#save-alarm');
+		const $resetAlarmBtn = $clock.querySelector('#reset-alarm');
+		const $cancelAlarmBtn = $clock.querySelector('#cancel-alarm');
+
+		const openAlarmSetup = () => { $alarmSetup.classList.add(openAlarmClass) };
+		const closeAlarmSetup = () => { $alarmSetup.classList.remove(openAlarmClass) };
+
+		function setAlarm() {
+			const $alarmHours = $clock.querySelector('#alarm-hours');
+			const $alarmMinutes = $clock.querySelector('#alarm-minutes');
+			const $alarmSwitch = $clock.querySelector('.radio__switch:checked');
+
+			if($alarmHours.value && $alarmMinutes.value && $alarmSwitch.value) {
+				alarmTime = `${$alarmHours.value}:${$alarmMinutes.value} ${$alarmSwitch.value}`;
+				$alarmBtn.classList.add(activeAlarmBtnClass);
+
+				closeAlarmSetup();
+				console.log(alarmTime);
+			}
 		}
 
 		return {
 			init: () => {
 				setInterval(setTime, 1000);
+				$alarmBtn.addEventListener('click', openAlarmSetup);
+				$saveAlarmBtn.addEventListener('click', setAlarm);
+				$cancelAlarmBtn.addEventListener('click', closeAlarmSetup);
+
 			}
 		}
 	};
 
 	function init() {
-		const newClock = clock('js-clock');
+		const newClock = clock();
 		newClock.init();
 	}
 

@@ -67,15 +67,26 @@
       				</div>
       			</div>
 
-      			<div class="clock__alarm clock__alarm--active" id="js-clock-alarm">
+      			<div class="clock__alarm" id="clock-alarm">
       				<div class="clock__row">
 						<div class="alarm__inputs">
-							<input class="alarm__input" type="number" name="alarm-hours" id="alarm-hours" placeholder="00" min="00" max="12">
+							<input class="alarm__input" type="number" name="alarm-hours" id="alarm-hours" placeholder="00" min="1" max="12">
 							<span class="alarm__col">:</span>
 							<input class="alarm__input" type="number" name="alarm-minutes" id="alarm-minutes" placeholder="00" min="00" max="59">
 						</div>
 
-						<div class="alarm__radios"></div>
+						<div class="alarm__radios">
+							<label class="radio__label" for="am-switch">am</label>
+							<input class="radio__switch" type="radio" name="period-switch" id="am-switch" value="am">
+							<label class="radio__label" for="pm-switch">pm</label>
+							<input class="radio__switch" type="radio" name="period-switch" id="pm-switch" value="pm">
+						</div>
+					</div>
+
+					<div class="clock__row">
+						<button class="alarm__action" id="save-alarm">Save</button>
+						<button class="alarm__action" id="reset-alarm">Reset</button>
+						<button class="alarm__action" id="cancel-alarm">Cancel</button>
 					</div>
       			</div>
       		</div>
