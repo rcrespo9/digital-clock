@@ -9,6 +9,7 @@
 
 body {
 	background-color: #c5cfd8;
+	font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -33,6 +34,7 @@ body {
   #VARIABLES
 \*------------------------------------*/
 
+$dark-gray: #0f1620;
 $medium-gray: #272e38;
 $light-gray: #cacaca;
 
@@ -52,7 +54,6 @@ $light-gray: #cacaca;
 @mixin clock-text() {
 	color: $medium-gray;
 	font-size: rem(10px);
-	font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	text-transform: uppercase;
 
 	&.active {
@@ -85,9 +86,10 @@ $light-gray: #cacaca;
 }
 
 	.clock__display {
+		position: relative;
 		padding: rem(7px) rem(15px) rem(8px);
 		border-radius: 4px;
-		background-color: #0f1620;
+		background-color: $dark-gray;;
 		box-shadow: inset 0px 2px 0px 0px rgba(11,17,26,0.7), 0px 2px 0px 0px rgba(45,54,66,0.7);
 	}
 
@@ -114,7 +116,7 @@ $light-gray: #cacaca;
 }
 
 // ALARM BUTTON
-.time__alarm {
+.time__alarm-btn {
 	padding: 0;
 	background-color: transparent;
 	border: none;
@@ -123,7 +125,7 @@ $light-gray: #cacaca;
 	cursor: pointer;
 	transition: all .1s ease-in-out;
 
-	&.time__alarm--active,
+	&.time__alarm-btn--active,
 	&:hover {
 		color: $light-gray;
 	}
@@ -180,6 +182,47 @@ $light-gray: #cacaca;
 	@include clock-text;
 }
 
+/*------------------------------------*\
+  #CLOCK ALARM FORM
+\*------------------------------------*/
+
+.clock__alarm {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+	width: 100%;
+	height: 100%;
+	padding: rem(7px) rem(15px);
+	background-color: inherit;
+	border-radius: inherit;
+	color: $light-gray;
+}
+
+.clock__alarm--active {
+	display: block;
+}
+
+	.alarm__input {
+		width: 100%;
+		max-width: rem(45px);
+		padding: rem(6px) rem(5px);
+		border: 1px solid $medium-gray;
+		border-radius: 4px;
+		background-color: transparent;
+		color: inherit;
+		font-size: rem(14px);
+		font-weight: 500;
+		appearance: none;
+
+		&::placeholder {
+			color: rgba($light-gray, .5);
+		}
+	}
+
+	.alarm__col {
+		padding: 0 rem(5px);
+	}
 
 /*------------------------------------*\
   #HELPERS
