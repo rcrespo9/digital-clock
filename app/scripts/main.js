@@ -3,6 +3,8 @@
 (function() {
 	const clock = () => {
 		const $clock = document.getElementById('js-clock');
+		const $alarmSetup = $clock.querySelector('#clock-alarm');
+		const $alarmAudio = $clock.querySelector('#alarm-audio');
 		const activeClass = 'active';
 
 		const setTimePeriod = () => { $clock.querySelector( `#${moment().format('a')}`).classList.add(activeClass) };
@@ -27,13 +29,13 @@
 
 			if(moment().format('hh:mm a') === alarmTime && alarmTime.length) {
 				console.log('Alarm ringing!');
+				$alarmAudio.play();
 			}
 		}
 
 		const openAlarmClass = 'clock__alarm--active';
 		const activeAlarmBtnClass = 'time__alarm-btn--active';
 
-		const $alarmSetup = $clock.querySelector('#clock-alarm');
 		const $alarmBtn = $clock.querySelector('#alarm-btn');
 		const $saveAlarmBtn = $clock.querySelector('#save-alarm');
 		const $resetAlarmBtn = $clock.querySelector('#reset-alarm');
