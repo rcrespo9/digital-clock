@@ -204,7 +204,7 @@ $light-gray: #cacaca;
 }
 
 	.alarm__input,
-	.radio__label {
+	.switch__label {
 		padding: rem(6px);
 		background-color: $medium-gray;
 		box-shadow: inset 0px 1px 0px 0px rgba($dark-gray, .2), 0px 1px 0px 0px rgba($light-gray, .2);
@@ -234,7 +234,7 @@ $light-gray: #cacaca;
 		font-family: inherit;
 	}
 
-	.radio__switch {
+	.switch__input {
 		position: absolute !important;
 		clip: rect(0, 0, 0, 0);
 		height: 1px;
@@ -243,11 +243,11 @@ $light-gray: #cacaca;
 		overflow: hidden;
 	}
 
-	.radio__switch:checked + .radio__label {
+	.switch__input:checked + .switch__label {
 		background-color: $dark-gray;
 	}
 
-	.radio__label {
+	.switch__label {
 		float: left;
 		display: inline-block;
 		width: rem(50px);
@@ -258,11 +258,11 @@ $light-gray: #cacaca;
 		}
 	}
 
-	.radio__label:first-of-type {
+	.switch__label:first-of-type {
 	  border-radius: 4px 0 0 4px;
 	}
 
-	.radio__label:last-of-type {
+	.switch__label:last-of-type {
 	  border-radius: 0 4px 4px 0;
 	}
 
