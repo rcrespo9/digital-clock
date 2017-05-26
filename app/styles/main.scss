@@ -235,6 +235,7 @@ $light-gray: #cacaca;
 
 	input.alarm__input {
 		display: inline-block;
+		max-width: rem(66px);
 		padding: 0;
 		border: none;
 		background-color: transparent;
