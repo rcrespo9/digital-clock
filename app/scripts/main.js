@@ -47,10 +47,10 @@
 		function setAlarm() {
 			const $alarmHours = $clock.querySelector('#alarm-hours');
 			const $alarmMinutes = $clock.querySelector('#alarm-minutes');
-			const $alarmSwitch = $clock.querySelector('.radio__switch:checked');
+			const $alarmRadio = $clock.querySelector('.period__radio:checked');
 
-			if($alarmHours.value && $alarmMinutes.value && $alarmSwitch.value) {
-				alarmTime = `${$alarmHours.value}:${$alarmMinutes.value} ${$alarmSwitch.value}`;
+			if($alarmHours.value && $alarmMinutes.value && $alarmRadio.value) {
+				alarmTime = `${$alarmHours.value}:${$alarmMinutes.value} ${$alarmRadio.value}`;
 				$alarmBtn.classList.add(activeAlarmBtnClass);
 
 				closeAlarmSetup();

@@ -83,7 +83,7 @@
       			</div>
 
       			<div class="clock__alarm" id="clock-alarm">
-					<div class="clock__row">
+					<div class="clock__row alarm__row">
 						<div class="alarm__actions time__el">
 							<button class="alarm__action" id="save-alarm">
 								<svg class="action__icon"><use xlink:href="#icon-check"></use></svg>
@@ -95,28 +95,18 @@
 								<svg class="action__icon"><use xlink:href="#icon-cross"></use></svg>
 							</button>
 						</div>
-					</div>
 
-<!--       				<div class="clock__row clock__row--inputs">
-						<div class="alarm__inputs">
-							<input class="alarm__input" type="number" name="alarm-hours" id="alarm-hours" placeholder="00" min="1" max="12">
-							<span class="alarm__col">:</span>
-							<input class="alarm__input" type="number" name="alarm-minutes" id="alarm-minutes" placeholder="00" min="00" max="59">
+						<div class="alarm__inputs time__digits time__el">
+							<input class="alarm__input" type="number" name="alarm-hours" id="alarm-hours" placeholder="00" min="1" max="12"><span class="alarm__col digits__col"></span><input class="alarm__input" type="number" name="alarm-minutes" id="alarm-minutes" placeholder="00" min="0" max="59">
 						</div>
 
-						<div class="alarm__switches">
-							<input class="switch__input" type="switch" name="period-switch" id="am-switch" value="am">
-							<label class="switch__label" for="am-switch">am</label>
-							<input class="switch__input" type="switch" name="period-switch" id="pm-switch" value="pm">
-							<label class="switch__label" for="pm-switch">pm</label>
+						<div class="alarm__periods time__periods time__el">
+							<input type="radio" name="period-radio" id="am-radio" class="period__radio" id="am-radio">
+							<label for="am-radio" class="period__label time__period">am</label>
+							<input type="radio" name="period-radio" id="pm-radio" class="period__radio" id="pm-radio">
+							<label for="pm-radio" class="period__label time__period">pm</label>
 						</div>
 					</div>
-
-					<div class="clock__row clock__row--btns">
-						<button class="alarm__action" id="save-alarm">Save</button>
-						<button class="alarm__action" id="reset-alarm">Reset</button>
-						<button class="alarm__action" id="cancel-alarm">Cancel</button>
-					</div> -->
       			</div>
       		</div>
 
