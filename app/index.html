@@ -69,7 +69,7 @@
 
       			<div class="clock__row clock__row--time">
       				<button class="time__alarm-btn time__el" id="alarm-btn">
-      					<svg class="alarm__icon"><use xlink:href="#alarm-clock"></use></svg>
+      					<svg class="alarm-btn__icon"><use xlink:href="#alarm-clock"></use></svg>
       				</button>
 
       				<time class="time__digits time__el" id="time-digits">
@@ -83,6 +83,20 @@
       			</div>
 
       			<div class="clock__alarm" id="clock-alarm">
+					<div class="clock__row">
+						<div class="alarm__actions time__el">
+							<button class="alarm__action" id="save-alarm">
+								<svg class="action__icon"><use xlink:href="#icon-check"></use></svg>
+							</button>
+							<button class="alarm__action" id="reset-alarm">
+								<svg class="action__icon"><use xlink:href="#icon-reload"></use></svg>
+							</button>
+							<button class="alarm__action" id="cancel-alarm">
+								<svg class="action__icon"><use xlink:href="#icon-cross"></use></svg>
+							</button>
+						</div>
+					</div>
+
 <!--       				<div class="clock__row clock__row--inputs">
 						<div class="alarm__inputs">
 							<input class="alarm__input" type="number" name="alarm-hours" id="alarm-hours" placeholder="00" min="1" max="12">

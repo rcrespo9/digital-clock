@@ -71,6 +71,20 @@ $light-gray: #cacaca;
 	fill: currentColor;
 }
 
+@mixin btn-icon() {
+	padding: 0;
+	background-color: transparent;
+	border: none;
+	color: $medium-gray;
+	appearance: none;
+	cursor: pointer;
+	transition: all .1s ease-in-out;
+
+	&:hover {
+		color: $light-gray;
+	}
+}
+
 /*------------------------------------*\
   #WRAPPER
 \*------------------------------------*/
@@ -130,21 +144,14 @@ $light-gray: #cacaca;
 
 // ALARM BUTTON
 .time__alarm-btn {
-	padding: 0;
-	background-color: transparent;
-	border: none;
-	color: $medium-gray;
-	appearance: none;
-	cursor: pointer;
-	transition: all .1s ease-in-out;
+	@include btn-icon;
 
-	&.time__alarm-btn--active,
-	&:hover {
+	&.time__alarm-btn--active {
 		color: $light-gray;
 	}
 }
 
-	.alarm__icon {
+	.alarm-btn__icon {
 		@include svg-icon(rem(16px), rem(16px));
 	}
 
@@ -206,6 +213,20 @@ $light-gray: #cacaca;
 .clock__alarm--active {
 	display: block;
 }
+
+	.alarm__action {
+		display: block;
+		@include btn-icon;
+
+		&:not(:last-of-type) {
+			margin-bottom: rem(3px);
+		}
+
+	}
+
+		.action__icon {
+			@include svg-icon(rem(16px), rem(16px));
+		}
 
 	.switch__input {
 		position: absolute !important;
