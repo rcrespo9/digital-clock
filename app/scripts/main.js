@@ -74,16 +74,25 @@
 			}
 		}
 
+		function twoDigitFormat() {
+			if(this.value.length === 1)  {
+				this.value = '0' + this.value;
+			}
+		}
+
 		return {
 			init: () => {
 				setInterval(setTime, 1000);
+
 				$alarmBtn.addEventListener('click', openAlarmSetup);
 				$saveAlarmBtn.addEventListener('click', setAlarm);
 				$resetAlarmBtn.addEventListener('click', resetAlarm);
 				$cancelAlarmBtn.addEventListener('click', closeAlarmSetup);
 
+				$alarmHours.addEventListener('change', twoDigitFormat);
+				$alarmMinutes.addEventListener('change', twoDigitFormat);
 			}
-		}
+		};
 	};
 
 	function init() {
