@@ -153,11 +153,26 @@ $light-gray: #cacaca;
 
 // ALARM BUTTON
 .time__alarm-btn {
+	transform: rotate(0deg);
 	@include btn-icon;
 
-	&.time__alarm-btn--active {
+	&.time__alarm-btn--active,
+	&.time__alarm-btn--ringing {
 		color: $light-gray;
 	}
+
+	&.time__alarm-btn--active {
+		animation: .1s linear 0s 5 alternate alarm_ringing;
+	}
+
+	&.time__alarm-btn--ringing {
+		animation: .1s linear 0s infinite alternate alarm_ringing;
+	}
+}
+
+@keyframes alarm_ringing {
+	from { transform: rotate(-15deg);  }
+	to { transform: rotate(15deg);  }
 }
 
 	.alarm-btn__icon {
