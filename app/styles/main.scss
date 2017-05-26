@@ -87,6 +87,10 @@ $light-gray: #cacaca;
 
 	.clock__display {
 		position: relative;
+	}
+
+	.clock__display,
+	.clock__alarm {
 		padding: rem(7px) rem(15px) rem(8px);
 		border-radius: 4px;
 		background-color: $dark-gray;;
@@ -107,7 +111,7 @@ $light-gray: #cacaca;
 }
 
 /*------------------------------------*\
-  #TIME
+  #DISPLAY STYLES
 \*------------------------------------*/
 
 // SHARED STYLES
@@ -183,7 +187,7 @@ $light-gray: #cacaca;
 }
 
 /*------------------------------------*\
-  #CLOCK ALARM FORM
+  #ALARM FORM
 \*------------------------------------*/
 
 .clock__alarm {
@@ -193,52 +197,11 @@ $light-gray: #cacaca;
 	display: none;
 	width: 100%;
 	height: 100%;
-	padding: rem(7px) rem(15px);
-	background-color: inherit;
-	border-radius: inherit;
-	color: $light-gray;
 }
 
 .clock__alarm--active {
 	display: block;
 }
-
-	.clock__row--inputs {
-		width: 75%;
-		margin: 0 auto;
-	}
-
-		.alarm__input,
-		.switch__label {
-			padding: rem(6px);
-			background-color: $medium-gray;
-			box-shadow: inset 0px 1px 0px 0px rgba($dark-gray, .2), 0px 1px 0px 0px rgba($light-gray, .2);
-			color: inherit;
-			font-family: inherit;
-			font-size: rem(14px);
-			font-weight: 500;
-			text-align: center;
-		}
-
-		.alarm__input {
-			width: rem(42px);
-			border: none;
-			border-radius: 4px;
-			appearance: none;
-
-			&::placeholder {
-				color: rgba($light-gray, .5);
-			}
-		}
-
-		.alarm__col {
-			padding: 0 rem(3px);
-			font-weight: 500;
-		}
-
-	.alarm__action {
-		font-family: inherit;
-	}
 
 	.switch__input {
 		position: absolute !important;
@@ -251,26 +214,6 @@ $light-gray: #cacaca;
 
 	.switch__input:checked + .switch__label {
 		background-color: $dark-gray;
-	}
-
-	.switch__label {
-		float: left;
-		display: inline-block;
-		width: rem(50px);
-		text-transform: uppercase;
-
-		&:hover {
-			cursor: pointer;
-		}
-	}
-
-	.switch__label:first-of-type {
-		border-radius: 4px 0 0 4px;
-	}
-
-	.switch__label:last-of-type {
-		border-left: 1px solid $dark-gray;
-		border-radius: 0 4px 4px 0;
 	}
 
 /*------------------------------------*\
