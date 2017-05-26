@@ -41,16 +41,32 @@
 		const $resetAlarmBtn = $clock.querySelector('#reset-alarm');
 		const $cancelAlarmBtn = $clock.querySelector('#cancel-alarm');
 
+		const $alarmHours = $clock.querySelector('#alarm-hours');
+		const $alarmMinutes = $clock.querySelector('#alarm-minutes');
+
 		const openAlarmSetup = () => { $alarmSetup.classList.add(openAlarmClass) };
 		const closeAlarmSetup = () => { $alarmSetup.classList.remove(openAlarmClass) };
 
-		function setAlarm() {
-			const $alarmHours = $clock.querySelector('#alarm-hours');
-			const $alarmMinutes = $clock.querySelector('#alarm-minutes');
-			const $alarmRadio = $clock.querySelector('.period__radio:checked');
+		function resetAlarm() {
+			const $alarmRadioChecked = $clock.querySelector('input[type="radio"]:checked');
 
-			if($alarmHours.value && $alarmMinutes.value && $alarmRadio.value) {
-				alarmTime = `${$alarmHours.value}:${$alarmMinutes.value} ${$alarmRadio.value}`;
+			alarmTime = '';
+
+			$alarmHours.value = '';
+			$alarmMinutes.value = '';
+
+			if($alarmRadioChecked !== null) {
+				$alarmRadioChecked.checked = false;
+			}
+
+			$alarmBtn.classList.remove(activeAlarmBtnClass);
+		}
+
+		function setAlarm() {
+			const $alarmRadioChecked = $clock.querySelector('input[type="radio"]:checked');
+
+			if($alarmHours.value && $alarmMinutes.value && $alarmRadioChecked.value) {
+				alarmTime = `${$alarmHours.value}:${$alarmMinutes.value} ${$alarmRadioChecked.value}`;
 				$alarmBtn.classList.add(activeAlarmBtnClass);
 
 				closeAlarmSetup();
@@ -63,6 +79,7 @@
 				setInterval(setTime, 1000);
 				$alarmBtn.addEventListener('click', openAlarmSetup);
 				$saveAlarmBtn.addEventListener('click', setAlarm);
+				$resetAlarmBtn.addEventListener('click', resetAlarm);
 				$cancelAlarmBtn.addEventListener('click', closeAlarmSetup);
 
 			}
