@@ -264,6 +264,10 @@ $light-gray: #cacaca;
 		}
 	}
 
+	.alarm__col--inactive {
+		color: rgba($light-gray, 0.5);
+	}
+
 	.period__radio {
 		position: absolute !important;
 		clip: rect(0, 0, 0, 0);

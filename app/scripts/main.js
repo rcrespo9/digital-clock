@@ -13,20 +13,22 @@
 		const $alarmSetup = $clock.querySelector('#clock-alarm-form');
 		const $alarmAudio = $clock.querySelector('#alarm-audio');
 		const $alarmBtn = $clock.querySelector('#alarm-btn');
+		const $alarmColon = $clock.querySelector('#alarm-colon');
 
 		const $saveAlarmBtn = $clock.querySelector('#save-alarm');
 		const $resetAlarmBtn = $clock.querySelector('#reset-alarm');
 		const $cancelAlarmBtn = $clock.querySelector('#cancel-alarm');
 
 		const $alarmInputs = $clock.querySelectorAll('input');
-		const $alarmHours = $clock.querySelector('#alarm-hours');
-		const $alarmMinutes = $clock.querySelector('#alarm-minutes');
+		const $alarmTextInputs = $clock.querySelectorAll('.alarm__input');
 
 		const ringingAlarmBtnClass = 'time__alarm-btn--ringing';
 		const openAlarmClass = 'clock__alarm--active';
 		const activeAlarmBtnClass = 'time__alarm-btn--active';
+		const inactiveAlarmColClass = 'alarm__col--inactive';
 
 		const closeAlarmSetup = () => { $alarmSetup.classList.remove(openAlarmClass) };
+		const toggleAlarmCol = () => {  }
 
 		let alarmTime = '';
 		let isAlarmRinging = false;
@@ -51,6 +53,7 @@
 				isAlarmRinging = true;
 				$alarmAudio.play();
 				$alarmBtn.classList.add(ringingAlarmBtnClass);
+				closeAlarmSetup();
 			}
 		}
 
@@ -58,15 +61,10 @@
 		function resetAlarm() {
 			alarmTime = '';
 
-			Array.from($alarmInputs).forEach(function(el) {
-				if(el.type === 'text' && el.value.length) {
-					el.value = '';
-				} elseif(el.type === 'radio' && el.checked) {
-					el.checked = false;
-				}
-			});
+			$alarmSetup.reset();
 
 			$alarmBtn.classList.remove(activeAlarmBtnClass);
+			$alarmColon.classList.add(inactiveAlarmColClass);
 		}
 
 		function toggleAlarm() {
@@ -87,19 +85,30 @@
 			$alarmSetup.onsubmit = () => { return false; }
 
 			if($alarmSetup.checkValidity()) {
+				const $alarmHours = $clock.querySelector('#alarm-hours');
+				const $alarmMinutes = $clock.querySelector('#alarm-minutes');
 				const $alarmRadioChecked = $clock.querySelector('input[type="radio"]:checked');
 
 				alarmTime = `${$alarmHours.value}:${$alarmMinutes.value} ${$alarmRadioChecked.value}`;
+
+				$alarmColon.classList.remove(inactiveAlarmColClass);
 				$alarmBtn.classList.add(activeAlarmBtnClass);
 
 				closeAlarmSetup();
-				console.log(`Alarm set for ${alarmTime}`);
 			}
 		}
 
 		function twoDigitFormat() {
 			if(this.value.length === 1) {
 				this.value = '0' + this.value;
+			}
+		}
+
+		function highlightAlarmCol() {
+			if(this.value.length) {
+				$alarmColon.classList.remove(inactiveAlarmColClass);
+			} else {
+				$alarmColon.classList.add(inactiveAlarmColClass);
 			}
 		}
 
@@ -113,8 +122,10 @@
 				$resetAlarmBtn.addEventListener('click', resetAlarm);
 				$cancelAlarmBtn.addEventListener('click', closeAlarmSetup);
 
-				$alarmHours.addEventListener('change', twoDigitFormat);
-				$alarmMinutes.addEventListener('change', twoDigitFormat);
+				Array.from($alarmTextInputs).forEach(function(el) {
+					el.addEventListener('change', twoDigitFormat);
+					el.addEventListener('keyup', highlightAlarmCol);
+				});
 			}
 		};
 	};

@@ -85,19 +85,19 @@
       			<form class="clock__alarm" id="clock-alarm-form">
 					<div class="clock__row alarm__row">
 						<div class="alarm__actions time__el">
-							<button class="alarm__action" id="save-alarm" type="submit">
+							<button class="alarm__action" id="save-alarm" type="submit" title="Save alarm">
 								<svg class="action__icon"><use xlink:href="#icon-check"></use></svg>
 							</button>
-							<button class="alarm__action" id="reset-alarm" type="button">
+							<button class="alarm__action" id="reset-alarm" type="button" title="Reset alarm">
 								<svg class="action__icon"><use xlink:href="#icon-reload"></use></svg>
 							</button>
-							<button class="alarm__action" id="cancel-alarm" type="button">
+							<button class="alarm__action" id="cancel-alarm" type="button" title="Close alarm display">
 								<svg class="action__icon"><use xlink:href="#icon-cross"></use></svg>
 							</button>
 						</div>
 
 						<div class="alarm__inputs time__digits time__el">
-							<input class="alarm__input" type="text" name="alarm-hours" id="alarm-hours" placeholder="00" min="1" max="12" maxlength="2" pattern="\d*" required><span class="alarm__col digits__col"></span><input class="alarm__input" type="text" name="alarm-minutes" id="alarm-minutes" placeholder="00" min="0" max="59" maxlength="2" pattern="\d*" required>
+							<input class="alarm__input" type="text" name="alarm-hours" id="alarm-hours" placeholder="00" min="1" max="12" maxlength="2" pattern="\d*" required><span class="alarm__col alarm__col--inactive digits__col" id="alarm-colon"></span><input class="alarm__input" type="text" name="alarm-minutes" id="alarm-minutes" placeholder="00" min="0" max="59" maxlength="2" pattern="\d*" required>
 						</div>
 
 						<div class="alarm__periods time__periods time__el">
