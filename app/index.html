@@ -82,31 +82,31 @@
       				</div>
       			</div>
 
-      			<div class="clock__alarm" id="clock-alarm">
+      			<form class="clock__alarm" id="clock-alarm-form">
 					<div class="clock__row alarm__row">
 						<div class="alarm__actions time__el">
-							<button class="alarm__action" id="save-alarm">
+							<button class="alarm__action" id="save-alarm" type="submit">
 								<svg class="action__icon"><use xlink:href="#icon-check"></use></svg>
 							</button>
-							<button class="alarm__action" id="reset-alarm">
+							<button class="alarm__action" id="reset-alarm" type="button">
 								<svg class="action__icon"><use xlink:href="#icon-reload"></use></svg>
 							</button>
-							<button class="alarm__action" id="cancel-alarm">
+							<button class="alarm__action" id="cancel-alarm" type="button">
 								<svg class="action__icon"><use xlink:href="#icon-cross"></use></svg>
 							</button>
 						</div>
 
 						<div class="alarm__inputs time__digits time__el">
-							<input class="alarm__input" type="number" name="alarm-hours" id="alarm-hours" placeholder="00" min="1" max="12"><span class="alarm__col digits__col"></span><input class="alarm__input" type="number" name="alarm-minutes" id="alarm-minutes" placeholder="00" min="0" max="59">
+							<input class="alarm__input" type="text" name="alarm-hours" id="alarm-hours" placeholder="00" min="1" max="12" maxlength="2" pattern="\d*" required><span class="alarm__col digits__col"></span><input class="alarm__input" type="text" name="alarm-minutes" id="alarm-minutes" placeholder="00" min="0" max="59" maxlength="2" pattern="\d*" required>
 						</div>
 
 						<div class="alarm__periods time__periods time__el">
-							<input type="radio" name="period-radio" class="period__radio" id="am-radio" value="am">
+							<input type="radio" name="period-radio" class="period__radio" id="am-radio" value="am" required>
 							<label for="am-radio" class="period__label time__period">am</label>
-							<input type="radio" name="period-radio" class="period__radio" id="pm-radio" value="pm">
+							<input type="radio" name="period-radio" class="period__radio" id="pm-radio" value="pm" required>
 							<label for="pm-radio" class="period__label time__period">pm</label>
 						</div>
-					</div>
+					</form>
       			</div>
       		</div>
 

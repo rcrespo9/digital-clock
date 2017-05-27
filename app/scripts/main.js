@@ -2,19 +2,36 @@
 
 (function() {
 	const clock = () => {
+		// clock variables
 		const $clock = document.getElementById('js-clock');
-		const $alarmSetup = $clock.querySelector('#clock-alarm');
-		const $alarmAudio = $clock.querySelector('#alarm-audio');
-		const $alarmBtn = $clock.querySelector('#alarm-btn');
-
-		const ringingAlarmBtnClass = 'time__alarm-btn--ringing';
 		const activeClass = 'active';
 
 		const setTimePeriod = () => { $clock.querySelector( `#${moment().format('a')}`).classList.add(activeClass) };
 		const setDay = () => { $clock.querySelector( `.clock__day[data-day="${moment().day()}"]` ).classList.add(activeClass) };
 
-		let alarmTime = '';
+		// alarm variables
+		const $alarmSetup = $clock.querySelector('#clock-alarm-form');
+		const $alarmAudio = $clock.querySelector('#alarm-audio');
+		const $alarmBtn = $clock.querySelector('#alarm-btn');
 
+		const $saveAlarmBtn = $clock.querySelector('#save-alarm');
+		const $resetAlarmBtn = $clock.querySelector('#reset-alarm');
+		const $cancelAlarmBtn = $clock.querySelector('#cancel-alarm');
+
+		const $alarmInputs = $clock.querySelectorAll('input');
+		const $alarmHours = $clock.querySelector('#alarm-hours');
+		const $alarmMinutes = $clock.querySelector('#alarm-minutes');
+
+		const ringingAlarmBtnClass = 'time__alarm-btn--ringing';
+		const openAlarmClass = 'clock__alarm--active';
+		const activeAlarmBtnClass = 'time__alarm-btn--active';
+
+		const closeAlarmSetup = () => { $alarmSetup.classList.remove(openAlarmClass) };
+
+		let alarmTime = '';
+		let isAlarmRinging = false;
+
+		// clock functions
 		function setTime() {
 			const $timeDigits = $clock.querySelector('#time-digits');
 			const $hours = $clock.querySelector('#hours');
@@ -31,63 +48,67 @@
 			setDay();
 
 			if(moment().format('hh:mm a') === alarmTime && alarmTime.length) {
-				console.log('Alarm ringing!');
+				isAlarmRinging = true;
 				$alarmAudio.play();
 				$alarmBtn.classList.add(ringingAlarmBtnClass);
 			}
 		}
 
-		const openAlarmClass = 'clock__alarm--active';
-		const activeAlarmBtnClass = 'time__alarm-btn--active';
-
-		const $saveAlarmBtn = $clock.querySelector('#save-alarm');
-		const $resetAlarmBtn = $clock.querySelector('#reset-alarm');
-		const $cancelAlarmBtn = $clock.querySelector('#cancel-alarm');
-
-		const $alarmHours = $clock.querySelector('#alarm-hours');
-		const $alarmMinutes = $clock.querySelector('#alarm-minutes');
-
-		const openAlarmSetup = () => { $alarmSetup.classList.add(openAlarmClass) };
-		const closeAlarmSetup = () => { $alarmSetup.classList.remove(openAlarmClass) };
-
+		// alarm functions
 		function resetAlarm() {
-			const $alarmRadioChecked = $clock.querySelector('input[type="radio"]:checked');
-
 			alarmTime = '';
 
-			$alarmHours.value = '';
-			$alarmMinutes.value = '';
-
-			if($alarmRadioChecked !== null) {
-				$alarmRadioChecked.checked = false;
-			}
+			Array.from($alarmInputs).forEach(function(el) {
+				if(el.type === 'text' && el.value.length) {
+					el.value = '';
+				} elseif(el.type === 'radio' && el.checked) {
+					el.checked = false;
+				}
+			});
 
 			$alarmBtn.classList.remove(activeAlarmBtnClass);
 		}
 
-		function setAlarm() {
-			const $alarmRadioChecked = $clock.querySelector('input[type="radio"]:checked');
+		function toggleAlarm() {
+			if(isAlarmRinging) {
+				isAlarmRinging = false;
 
-			if($alarmHours.value && $alarmMinutes.value && $alarmRadioChecked.value) {
+				$alarmAudio.pause();
+				$alarmAudio.currentTime = 0;
+
+				$alarmBtn.classList.remove(ringingAlarmBtnClass);
+				resetAlarm();
+			} else {
+				$alarmSetup.classList.add(openAlarmClass);
+			}
+		};
+
+		function setAlarm() {
+			$alarmSetup.onsubmit = () => { return false; }
+
+			if($alarmSetup.checkValidity()) {
+				const $alarmRadioChecked = $clock.querySelector('input[type="radio"]:checked');
+
 				alarmTime = `${$alarmHours.value}:${$alarmMinutes.value} ${$alarmRadioChecked.value}`;
 				$alarmBtn.classList.add(activeAlarmBtnClass);
 
 				closeAlarmSetup();
-				console.log(alarmTime);
+				console.log(`Alarm set for ${alarmTime}`);
 			}
 		}
 
 		function twoDigitFormat() {
-			if(this.value.length === 1)  {
+			if(this.value.length === 1) {
 				this.value = '0' + this.value;
 			}
 		}
 
+		// public functions
 		return {
 			init: () => {
 				setInterval(setTime, 1000);
 
-				$alarmBtn.addEventListener('click', openAlarmSetup);
+				$alarmBtn.addEventListener('click', toggleAlarm);
 				$saveAlarmBtn.addEventListener('click', setAlarm);
 				$resetAlarmBtn.addEventListener('click', resetAlarm);
 				$cancelAlarmBtn.addEventListener('click', closeAlarmSetup);

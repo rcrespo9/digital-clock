@@ -248,7 +248,7 @@ $light-gray: #cacaca;
 			@include svg-icon(rem(16px), rem(16px));
 		}
 
-	input.alarm__input {
+	.alarm__input {
 		display: inline-block;
 		max-width: rem(66px);
 		padding: 0;
@@ -262,12 +262,6 @@ $light-gray: #cacaca;
 		&::placeholder {
 			color: rgba($light-gray, 0.5);
 		}
-	}
-
-	input.alarm__input::-webkit-outer-spin-button,
-	input.alarm__input::-webkit-inner-spin-button {
-		-webkit-appearance: none;
-		margin: 0;
 	}
 
 	.period__radio {
