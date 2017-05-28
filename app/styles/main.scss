@@ -7,6 +7,18 @@
 	box-sizing: border-box;
 }
 
+html {
+	font-size: 12px;
+
+	@media(min-width: 30em) {
+		font-size: 16px;
+	}
+
+	@media(min-width: 100em) {
+		font-size: 1vw;
+	}
+}
+
 body {
 	background-color: #c5cfd8;
 	font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -315,6 +327,7 @@ $light-gray: #cacaca;
 	bottom: rem(15px);
 	left: 0;
 	width: 100%;
+	padding: 0 rem(20px);
 	text-align: center;
 }
 
@@ -332,6 +345,14 @@ $light-gray: #cacaca;
 
 			&:hover {
 				color: #434E5E;
+			}
+		}
+
+		.attribution__text br {
+			display: block;
+
+			@media(min-width: 30em) {
+				display: none;
 			}
 		}
 
