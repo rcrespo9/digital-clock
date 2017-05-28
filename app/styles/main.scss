@@ -228,10 +228,11 @@ $light-gray: #cacaca;
 // TIME PERIODS
 .time__period {
 	display: block;
+	line-height: .75;
 	@include clock-text;
 
 	&:first-of-type {
-		margin-bottom: rem(3px);
+		margin-bottom: rem(6px);
 	}
 }
 
