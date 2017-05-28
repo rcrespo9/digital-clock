@@ -11,7 +11,6 @@
 
 		// alarm variables
 		const $alarmSetup = $clock.querySelector('#clock-alarm-form');
-		const $alarmAudio = $clock.querySelector('#alarm-audio');
 		const $alarmBtn = $clock.querySelector('#alarm-btn');
 		const $alarmColon = $clock.querySelector('#alarm-colon');
 
@@ -51,7 +50,7 @@
 
 			if(moment().format('hh:mm a') === alarmTime && alarmTime.length) {
 				isAlarmRinging = true;
-				$alarmAudio.play();
+				$clock.querySelector('#alarm-audio').play();
 				$alarmBtn.classList.add(ringingAlarmBtnClass);
 				closeAlarmSetup();
 			}
@@ -71,8 +70,8 @@
 			if(isAlarmRinging) {
 				isAlarmRinging = false;
 
-				$alarmAudio.pause();
-				$alarmAudio.currentTime = 0;
+				$clock.querySelector('#alarm-audio').pause();
+				$clock.querySelector('#alarm-audio').currentTime = 0;
 
 				$alarmBtn.classList.remove(ringingAlarmBtnClass);
 				resetAlarm();
