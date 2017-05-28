@@ -348,11 +348,11 @@ $light-gray: #cacaca;
 			}
 		}
 
-		.attribution__text br {
+		.attribution__text span {
 			display: block;
 
 			@media(min-width: 30em) {
-				display: none;
+				display: inline;
 			}
 		}
 
