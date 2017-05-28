@@ -173,14 +173,21 @@ $light-gray: #cacaca;
 	&.time__alarm-btn--active,
 	&.time__alarm-btn--ringing {
 		color: $light-gray;
+		animation-name: alarm_ringing;
+	    animation-duration: 0.1s;
+	    animation-timing-function: linear;
+	    animation-delay: 0s;
+	    animation-direction: alternate;
+	    animation-fill-mode: initial;
+	    animation-play-state: initial;
 	}
 
 	&.time__alarm-btn--active {
-		animation: .1s linear 0s 5 alternate alarm_ringing;
+		animation-iteration-count: 7;
 	}
 
 	&.time__alarm-btn--ringing {
-		animation: .1s linear 0s infinite alternate alarm_ringing;
+		animation-iteration-count: infinite;
 	}
 }
 
