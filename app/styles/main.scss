@@ -1,0 +1,371 @@
+// bower:scss
+// endbower
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 12px;
+
+	@media(min-width: 30em) {
+		font-size: 16px;
+	}
+
+	@media(min-width: 100em) {
+		font-size: 1vw;
+	}
+}
+
+body {
+	background-color: #c5cfd8;
+	font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/*------------------------------------*\
+  #FONTS
+\*------------------------------------*/
+
+@font-face {
+    font-family: 'digital-7';
+    src: url('../fonts/digital-7-webfont.eot');
+    src: url('../fonts/digital-7-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/digital-7-webfont.woff2') format('woff2'),
+         url('../fonts/digital-7-webfont.woff') format('woff'),
+         url('../fonts/digital-7-webfont.ttf') format('truetype'),
+         url('../fonts/digital-7-webfont.svg#digital-7regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*------------------------------------*\
+  #VARIABLES
+\*------------------------------------*/
+
+$dark-gray: #0f1620;
+$medium-gray: #272e38;
+$light-gray: #cacaca;
+
+/*------------------------------------*\
+  #FUNCTIONS
+\*------------------------------------*/
+
+@function rem($size) {
+  $remSize: $size / 16px;
+  @return #{$remSize}rem;
+}
+
+/*------------------------------------*\
+  #MIXINS
+\*------------------------------------*/
+
+@mixin clock-digits() {
+	margin-top: rem(-9px);
+	margin-bottom: rem(-14px);
+	color: $light-gray;
+	font-family: 'digital-7';
+	font-size: rem(65px);
+	font-weight: normal;
+	letter-spacing: rem(2px);
+}
+
+@mixin clock-text() {
+	color: $medium-gray;
+	font-size: rem(10px);
+	text-transform: uppercase;
+
+	&.active {
+		color: $light-gray;
+		font-weight: 500;
+	}
+}
+
+@mixin svg-icon($width, $height) {
+	display: inline-block;
+	width: $width;
+	height: $height;
+	stroke-width: 0;
+	stroke: currentColor;
+	fill: currentColor;
+}
+
+@mixin btn-icon() {
+	padding: 0;
+	background-color: transparent;
+	border: none;
+	color: $medium-gray;
+	appearance: none;
+	cursor: pointer;
+	transition: all .1s ease-in-out;
+
+	&:hover {
+		color: $light-gray;
+	}
+}
+
+/*------------------------------------*\
+  #WRAPPER
+\*------------------------------------*/
+
+.page-wrapper {
+	display: flex;
+	height: 100vh;
+	padding: 0 rem(20px);
+	justify-content: center;
+	align-items: center;
+}
+
+/*------------------------------------*\
+  #CLOCK CONTAINERS
+\*------------------------------------*/
+
+.clock {
+	max-width: rem(406px);
+	width: 100%;
+	padding: rem(46px);
+	background-color: $medium-gray;
+	box-shadow: 0px 21px 25px -10px rgba(0,0,0,0.4);
+}
+
+	.clock__display {
+		position: relative;
+	}
+
+	.clock__display,
+	.clock__alarm {
+		padding: rem(9px) rem(15px) rem(9px);
+		border-radius: 4px;
+		background-color: $dark-gray;;
+		box-shadow: inset 0px 2px 0px 0px rgba(11,17,26,0.7), 0px 2px 0px 0px rgba(45,54,66,0.7);
+	}
+
+	.clock__row {
+		display: flex;
+		justify-content: space-between;
+	}
+
+/*------------------------------------*\
+  #CLOCK DAYS
+\*------------------------------------*/
+
+.clock__day {
+	@include clock-text;
+}
+
+/*------------------------------------*\
+  #DISPLAY STYLES
+\*------------------------------------*/
+
+// SHARED STYLES
+.time__el {
+	align-self: flex-end;
+}
+
+// ALARM BUTTON
+.time__alarm-btn {
+	transform: rotate(0deg);
+	@include btn-icon;
+
+	&.time__alarm-btn--active,
+	&.time__alarm-btn--ringing {
+		color: $light-gray;
+	}
+
+	&.time__alarm-btn--active {
+		animation: .1s linear 0s 5 alternate alarm_ringing;
+	}
+
+	&.time__alarm-btn--ringing {
+		animation: .1s linear 0s infinite alternate alarm_ringing;
+	}
+}
+
+@keyframes alarm_ringing {
+	from { transform: rotate(-15deg);  }
+	to { transform: rotate(15deg);  }
+}
+
+	.alarm-btn__icon {
+		vertical-align: bottom;
+		@include svg-icon(rem(16px), rem(16px));
+	}
+
+// DIGITS
+.time__digits {
+	@include clock-digits;
+}
+
+	.digits__col,
+	.digits__num {
+		display: inline-block;
+	}
+
+	.digits__col {
+		position: relative;
+		padding: 0 rem(3px);
+
+		&:before,
+		&:after {
+			content: ".";
+			display: block;
+			position: relative;
+			line-height: 0;
+		}
+
+		&:before {
+			top: rem(-34px);
+		}
+
+		&:after {
+			bottom: 0;
+		}
+	}
+
+// TIME PERIODS
+.time__period {
+	display: block;
+	@include clock-text;
+
+	&:first-of-type {
+		margin-bottom: rem(3px);
+	}
+}
+
+/*------------------------------------*\
+  #ALARM FORM
+\*------------------------------------*/
+
+.clock__alarm {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+	width: 100%;
+	height: 100%;
+}
+
+.clock__alarm--active {
+	display: block;
+}
+
+	.alarm__row {
+		position: relative;
+		top: 6px;
+	}
+
+		.alarm__action {
+			display: block;
+			@include btn-icon;
+
+			&:not(:last-of-type) {
+				margin-bottom: rem(1px);
+			}
+
+		}
+
+			.action__icon {
+				vertical-align: bottom;
+				@include svg-icon(rem(16px), rem(16px));
+			}
+
+		.alarm__input {
+			display: inline-block;
+			max-width: rem(66px);
+			padding: 0;
+			border: none;
+			background-color: transparent;
+			text-align: center;
+			appearance: none;
+			-moz-appearance: textfield;
+			@include clock-digits;
+
+			&:focus {
+				outline: none;
+			}
+
+			&::placeholder {
+				color: rgba($light-gray, 0.5);
+			}
+		}
+
+		.alarm__col--inactive {
+			color: rgba($light-gray, 0.5);
+		}
+
+		.period__radio {
+			position: absolute !important;
+			clip: rect(0, 0, 0, 0);
+			height: 1px;
+			width: 1px;
+			border: 0;
+			overflow: hidden;
+		}
+
+		.period__label {
+			transition: all .1s ease-in-out;
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+
+		.period__label:hover,
+		.period__radio:checked + .period__label {
+			color: $light-gray;
+		}
+
+/*------------------------------------*\
+  #ATTRIBUTION
+\*------------------------------------*/
+
+.attribution {
+	position: absolute;
+	bottom: rem(15px);
+	left: 0;
+	width: 100%;
+	padding: 0 rem(20px);
+	text-align: center;
+}
+
+	.attribution__text {
+		margin: 0;
+		color: $medium-gray;
+		font-size: rem(20px);
+	}
+
+		.attribution__text a {
+			color: $medium-gray;
+			font-weight: 500;
+			transition: color .1s ease-in-out;
+			text-decoration: none;
+
+			&:hover {
+				color: #434E5E;
+			}
+		}
+
+		.attribution__text br {
+			display: block;
+
+			@media(min-width: 30em) {
+				display: none;
+			}
+		}
+
+/*------------------------------------*\
+  #HELPERS
+\*------------------------------------*/
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
