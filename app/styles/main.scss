@@ -297,22 +297,27 @@ $light-gray: #cacaca;
 .attribution {
 	position: absolute;
 	bottom: rem(15px);
-	margin: 0;
-	color: $medium-gray;
-	font-size: rem(20px);
+	left: 0;
+	width: 100%;
 	text-align: center;
 }
 
-	.attribution a {
+	.attribution__text {
+		margin: 0;
 		color: $medium-gray;
-		font-weight: 500;
-		transition: color .1s ease-in-out;
-		text-decoration: none;
-
-		&:hover {
-			color: #434E5E;
-		}
+		font-size: rem(20px);
 	}
+
+		.attribution__text a {
+			color: $medium-gray;
+			font-weight: 500;
+			transition: color .1s ease-in-out;
+			text-decoration: none;
+
+			&:hover {
+				color: #434E5E;
+			}
+		}
 
 /*------------------------------------*\
   #HELPERS
