@@ -52,7 +52,8 @@ $light-gray: #cacaca;
 \*------------------------------------*/
 
 @mixin clock-digits() {
-	margin-bottom: rem(-5px);
+	margin-top: rem(-9px);
+	margin-bottom: rem(-14px);
 	color: $light-gray;
 	font-family: 'digital-7';
 	font-size: rem(65px);
@@ -101,6 +102,7 @@ $light-gray: #cacaca;
 .page-wrapper {
 	display: flex;
 	height: 100vh;
+	padding: 0 rem(20px);
 	justify-content: center;
 	align-items: center;
 }
@@ -123,7 +125,7 @@ $light-gray: #cacaca;
 
 	.clock__display,
 	.clock__alarm {
-		padding: rem(7px) rem(15px) rem(8px);
+		padding: rem(9px) rem(15px) rem(9px);
 		border-radius: 4px;
 		background-color: $dark-gray;;
 		box-shadow: inset 0px 2px 0px 0px rgba(11,17,26,0.7), 0px 2px 0px 0px rgba(45,54,66,0.7);
@@ -176,6 +178,7 @@ $light-gray: #cacaca;
 }
 
 	.alarm-btn__icon {
+		vertical-align: bottom;
 		@include svg-icon(rem(16px), rem(16px));
 	}
 
@@ -214,6 +217,10 @@ $light-gray: #cacaca;
 .time__period {
 	display: block;
 	@include clock-text;
+
+	&:first-of-type {
+		margin-bottom: rem(3px);
+	}
 }
 
 /*------------------------------------*\
@@ -227,68 +234,73 @@ $light-gray: #cacaca;
 	display: none;
 	width: 100%;
 	height: 100%;
-	padding-top: 19px;
 }
 
 .clock__alarm--active {
 	display: block;
 }
 
-	.alarm__action {
-		display: block;
-		@include btn-icon;
-
-		&:not(:last-of-type) {
-			margin-bottom: rem(1px);
-		}
-
+	.alarm__row {
+		position: relative;
+		top: 6px;
 	}
 
-		.action__icon {
-			@include svg-icon(rem(16px), rem(16px));
+		.alarm__action {
+			display: block;
+			@include btn-icon;
+
+			&:not(:last-of-type) {
+				margin-bottom: rem(1px);
+			}
+
 		}
 
-	.alarm__input {
-		display: inline-block;
-		max-width: rem(66px);
-		padding: 0;
-		border: none;
-		background-color: transparent;
-		text-align: center;
-		appearance: none;
-		-moz-appearance: textfield;
-		@include clock-digits;
+			.action__icon {
+				vertical-align: bottom;
+				@include svg-icon(rem(16px), rem(16px));
+			}
 
-		&::placeholder {
+		.alarm__input {
+			display: inline-block;
+			max-width: rem(66px);
+			padding: 0;
+			border: none;
+			background-color: transparent;
+			text-align: center;
+			appearance: none;
+			-moz-appearance: textfield;
+			@include clock-digits;
+
+			&::placeholder {
+				color: rgba($light-gray, 0.5);
+			}
+		}
+
+		.alarm__col--inactive {
 			color: rgba($light-gray, 0.5);
 		}
-	}
 
-	.alarm__col--inactive {
-		color: rgba($light-gray, 0.5);
-	}
-
-	.period__radio {
-		position: absolute !important;
-		clip: rect(0, 0, 0, 0);
-		height: 1px;
-		width: 1px;
-		border: 0;
-		overflow: hidden;
-	}
-
-	.period__label {
-		transition: all .1s ease-in-out;
-
-		&:hover {
-			cursor: pointer;
+		.period__radio {
+			position: absolute !important;
+			clip: rect(0, 0, 0, 0);
+			height: 1px;
+			width: 1px;
+			border: 0;
+			overflow: hidden;
 		}
-	}
 
-	.period__label:hover,
-	.period__radio:checked + .period__label {
-		color: $light-gray;
-	}
+		.period__label {
+			transition: all .1s ease-in-out;
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+
+		.period__label:hover,
+		.period__radio:checked + .period__label {
+			color: $light-gray;
+		}
 
 /*------------------------------------*\
   #ATTRIBUTION
