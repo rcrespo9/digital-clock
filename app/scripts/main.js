@@ -11,7 +11,7 @@
 
 		// alarm variables
 		const $alarmSetup = $clock.querySelector('#clock-alarm-form');
-		const $alarmAudio = new Audio('../sounds/alarm-clock.mp3');
+		const $alarmAudio = new Audio('alarm-clock.mp3');
 		const $alarmBtn = $clock.querySelector('#alarm-btn');
 		const $alarmColon = $clock.querySelector('#alarm-colon');
 
