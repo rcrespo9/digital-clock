@@ -271,6 +271,10 @@ $light-gray: #cacaca;
 			-moz-appearance: textfield;
 			@include clock-digits;
 
+			&:focus {
+				outline: none;
+			}
+
 			&::placeholder {
 				color: rgba($light-gray, 0.5);
 			}
