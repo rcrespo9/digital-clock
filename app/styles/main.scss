@@ -8,6 +8,7 @@
 }
 
 body {
+	overflow: hidden;
 	background-color: #c5cfd8;
 	font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -288,6 +289,30 @@ $light-gray: #cacaca;
 	.period__label:hover,
 	.period__radio:checked + .period__label {
 		color: $light-gray;
+	}
+
+/*------------------------------------*\
+  #ATTRIBUTION
+\*------------------------------------*/
+
+.attribution {
+	position: absolute;
+	bottom: rem(15px);
+	margin: 0;
+	color: $medium-gray;
+	font-size: rem(20px);
+	text-align: center;
+}
+
+	.attribution a {
+		color: $medium-gray;
+		font-weight: 500;
+		transition: color .1s ease-in-out;
+		text-decoration: none;
+
+		&:hover {
+			color: #434E5E;
+		}
 	}
 
 /*------------------------------------*\
