@@ -169,31 +169,38 @@ $light-gray: #cacaca;
 .time__alarm-btn {
 	transform: rotate(0deg);
 	@include btn-icon;
+}
 
-	&.time__alarm-btn--active,
-	&.time__alarm-btn--ringing {
-		color: $light-gray;
-		animation-name: alarm_ringing;
-	    animation-duration: 0.1s;
-	    animation-timing-function: linear;
-	    animation-delay: 0s;
-	    animation-direction: alternate;
-	    animation-fill-mode: initial;
-	    animation-play-state: initial;
-	}
+.time__alarm-btn--active,
+.time__alarm-btn--ringing {
+	color: $light-gray;
+    animation-duration: 0.1s;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-direction: alternate;
+    animation-fill-mode: initial;
+    animation-play-state: initial;
+}
 
-	&.time__alarm-btn--active {
-		animation-iteration-count: 7;
-	}
+.time__alarm-btn--active {
+	animation-name: alarm_ringing;
+	animation-iteration-count: 7;
+}
 
-	&.time__alarm-btn--ringing {
-		animation-iteration-count: infinite;
-	}
+.time__alarm-btn--ringing {
+	animation-name: alarm_ringing_infinite;
+	animation-iteration-count: infinite;
 }
 
 @keyframes alarm_ringing {
 	from { transform: rotate(-15deg);  }
 	to { transform: rotate(15deg);  }
+}
+
+// safari hack
+@keyframes alarm_ringing_infinite {
+	0% { transform: rotate(-15deg);  }
+	100% { transform: rotate(15deg);  }
 }
 
 	.alarm-btn__icon {
